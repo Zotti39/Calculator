@@ -1,0 +1,36 @@
+html, body{
+    
+}
+.boxCalc, .visor, .botao{
+    border: 1px solid black;
+}
+.boxCalc, .visor, .teclas, .linha, .botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxCalc{
+    width: 40%;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+.visor, .teclas{
+    gap: 2px;
+    width: 95%;
+}
+.visor{
+    flex: 1;
+}
+.teclas{
+    flex-direction: column;
+    flex: 4;
+}
+.linha{
+    width: 100%;
+    flex: 1;
+    gap: 2px;
+}
+.botao{
+    flex: 1;
+}
