@@ -9,36 +9,39 @@
 </head>
 <body>
     <div class="boxCalc">
-        <div class="visor"> visor </div>
+        <div class="visor">
+            <div class="contas"></div>
+            <div class="resultado"></div>
+        </div>
         <div class="teclas">
             <div class="linha">
-                <div class="botao apagar">apaga</div>
-                <div class="botao corrigir"><-</div>
-                <div class="botao multiplicar">*</div>
-                <div class="botao dividir">/</div>
+                <button class="botao apagar">apaga</button>
+                <button class="botao corrigir"><-</button>
+                <button class="botao" onclick="appendAlg(' * ')">*</button>
+                <button class="botao" onclick="appendAlg(' / ')">/</button>
             </div>
             <div class="linha">
-                <div class="botao sete">7</div>
-                <div class="botao oito">8</div>
-                <div class="botao nove">9</div>
-                <div class="botao somar">+</div>
+                <button class="botao" onclick="appendAlg('7')">7</button>
+                <button class="botao" onclick="appendAlg('8')">8</button>
+                <button class="botao" onclick="appendAlg('9')">9</button>
+                <button class="botao" onclick="appendAlg(' + ')">+</button>
             </div>
             <div class="linha">
-                <div class="botao quatro">4</div>
-                <div class="botao cinco">5</div>
-                <div class="botao seis">6</div>
-                <div class="botao subtrair">-</div>
+                <button class="botao" onclick="appendAlg('4')">4</button>
+                <button class="botao" onclick="appendAlg('5')">5</button>
+                <button class="botao" onclick="appendAlg('6')">6</button>
+                <button class="botao" onclick="appendAlg(' - ')">-</button>
             </div>
             <div class="linha">
-                <div class="botao um">1</div>
-                <div class="botao dois">2</div>
-                <div class="botao tres">3</div>
-                <div class="botao igual">=</div>
+                <button class="botao" onclick="appendAlg('1')">1</button>
+                <button class="botao" onclick="appendAlg('2')">2</button>
+                <button class="botao" onclick="appendAlg('3')">3</button>
+                <button class="botao igual">=</button>
             </div>
             <div class="linha">
-                <div class="botao zero">0</div>
-                <div class="botao">a</div>
-                <div class="botao">b</div>
+                <button class="botao" onclick="appendAlg('0')">0</button>
+                <button class="botao">a</button>
+                <button class="botao">b</button>
             </div>
         </div>
     </div>
