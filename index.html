@@ -15,8 +15,8 @@
         </div>
         <div class="teclas">
             <div class="linha">
-                <button class="botao apagar">apaga</button>
-                <button class="botao corrigir"><-</button>
+                <button class="botao" onclick="apagar()">apaga</button>
+                <button class="botao" onclick="corrige(expressaoFinal)"><-</button>
                 <button class="botao" onclick="appendAlg(' * ')">*</button>
                 <button class="botao" onclick="appendAlg(' / ')">/</button>
             </div>
@@ -36,7 +36,7 @@
                 <button class="botao" onclick="appendAlg('1')">1</button>
                 <button class="botao" onclick="appendAlg('2')">2</button>
                 <button class="botao" onclick="appendAlg('3')">3</button>
-                <button class="botao igual">=</button>
+                <button class="botao igual" onclick="calculate(expressaoFinal)">=</button>
             </div>
             <div class="linha">
                 <button class="botao" onclick="appendAlg('0')">0</button>
