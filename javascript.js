@@ -12,63 +12,6 @@ function appendAlg(valor){
     expressaoFinal += valor;
     visor(expressaoFinal);
 }
-function add(a, b){
-    return parseInt(a) + parseInt(b);
-}
-function subtract(a,b){
-    return parseInt(a) - parseInt(b);
-}
-function multiply(a,b){
-    return parseInt(a) * parseInt(b);
-}
-function divide(a,b){
-    return parseInt(a)/parseInt(b);
-}
-let arraySumMinus = [];
-
-function calculate2(expressao){
-    const arr = expressao.split(' ');
-    console.log(arr);
-    //here i solved * and / equations and send it to a new array where there will only be + and -;
-    arr.forEach((item, index) => {
-        if(item == '+'){
-            arraySumMinus.push('+');
-        }
-        if(item == '-'){
-            arraySumMinus.push('-');
-        }
-        if(item == '*'){
-            let resultadoMultiply = multiply(arr[index-1],arr[index+1]);
-            arraySumMinus.push(resultadoMultiply);
-        }
-        if(item == '/'){
-            let resultadoDivide = divide(arr[index-1],arr[index+1]);
-            arraySumMinus.push(resultadoDivide);
-        }
-    });
-    arraySumMinus.forEach((item, index)=>{
-        if(item == '+'){
-            let resultadoSum = add(arr[index-1],arr[index+1]);
-            //stopped here 13:23 - 20/10/23;
-        }
-        if(item == '-'){
-            
-        }
-    })
-}
-
-
-function calculate(expressao){
-    try{
-        const resultado = eval(expressao);
-        resultadoVisor(resultado);
-        console.log(`${resultado} is the answer, succesful calculation!`);
-    }
-    catch(error){
-        resultadoVisor('Error!');
-        console.log('Found an error on the calculations!');
-    }
-}
 function apagar(){
     expressaoFinal = '';
     visor(expressaoFinal);
@@ -89,4 +32,67 @@ function corrige(z){
     }
     expressaoFinal = z;
     visor(expressaoFinal);
+}
+function matematica(esquerdo, operador, direito){
+//Now the functions that will substitute eval():
+    switch(operador){
+        case '+':
+            return esquerdo + direito;
+        case '-':
+            return esquerdo - direito;
+        case '*':
+            return esquerdo * direito;
+        case '/':
+            if (direito === 0){
+                throw new Error(`Can't divide by zero`);
+            }
+            return esquerdo / direito;
+        default:
+            throw new Error('Unknown operator');
+    } 
+}
+function operar(arrayValor, arrayOperador){
+//This function simplifies the process for the next function, on the lines 87 and 93;
+    let direito = arrayValor.pop();
+    let esquerdo = arrayValor.pop();
+    let operador = arrayOperador.pop();
+    const newValue = matematica(esquerdo, operador, direito);
+    arrayValor.push(newValue);
+}
+function resolverExpressao(x){
+//Divide the given string into an array of numbers and operrators so we can work on them:
+    const expression = x.match(/\d+|\+|\-|\*|\//g);
+    const array = expression.map((item)=>{
+        if (/\d+/.test(item)){
+            return parseFloat(item);
+        }
+        return item;
+    });
+//Now divide the existing array in two new ones, one for the values and one for the operators:
+    let valores = [];
+    let operadores = [];
+    const ordem = {
+        '+' : 1,
+        '-' : 1,
+        '*' : 2,
+        '/' : 2,
+    }
+    for (let i of array){
+        if (/\d+/.test(i)){
+            valores.push(i);
+        }
+        else{
+//Attention to the && and ||, this part also solves when it comes next
+//to a multiplication or division, since it is solved first in mathematics
+            while(operadores.length > 0 && ordem[operadores[operadores.length - 1]] >= ordem[i]){
+                operar(valores, operadores);
+            }
+            operadores.push(i);
+        }
+    }
+    while (operadores.length > 0){
+        operar(valores, operadores);
+    }
+//Show the result on the screen:
+    resultadoVisor(valores[0]);
 }
